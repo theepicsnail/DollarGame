@@ -1,25 +1,83 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | DollarGame</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>  
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/DollarGameHtml.json", {onProgress: UnityProgress});
-    </script>
-  </head>
-  <body>
-    <div class="webgl-content">
-      <div id="gameContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
-        <div class="title">DollarGame</div>
-      </div>
-    </div>
-  </body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            html, body {
+                margin:0;
+                padding:0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            body {
+                background: url('https://i.pinimg.com/originals/37/54/d1/3754d1de5c78467d254ade46cda8e653.jpg');
+                background-repeat: repeat;
+                background-size: 25%;
+            }
+            #game {
+                margin: auto;
+                width: 100vmin;
+                height: 100vmin;
+            }
+            #game > *, game-lines > * {
+                position: absolute;
+                width: 100vmin;
+                height: 100vmin;
+            }
+
+            game-lines {
+                stroke: gray;
+                stroke-width: 3;
+            }
+            game-lines .highlight {
+                stroke:white;
+                stroke-width: 5;
+            }
+
+            game-person {
+                position: absolute;
+                width:4em;
+                height:4em;
+                margin-left: -2em;
+                margin-top: -2em;
+
+                background:url('https://image.flaticon.com/sprites/new_packs/187129-emoticons.png');
+                background-size: 12em 12em;
+            }
+            game-person span {
+                display:flex;
+                justify-content: center;
+                bottom: .7em;
+                font-size: 1.5em;
+                position: relative;
+            }
+            game-person.happy {
+                background-position: 0% 50%;
+                color:greenyellow
+            }
+            game-person.sad {
+                background-position: 50% 50%;
+                color:maroon
+            }
+
+            #menu {
+                position: absolute;
+                left:0;
+                top:0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="game">
+            <game-lines id='lines'></game-lines>
+            <div id="people"></div>
+        </div>
+        <div id="menu">
+            Max People: <input id="number" type="number"><br>
+            Max neighbors: <input id="neighbors" type="number"><br>
+            <button id="generate">Generate</button>
+        </div>
+        <script src="dollarGame.js"></script>
+    </body>
 </html>
